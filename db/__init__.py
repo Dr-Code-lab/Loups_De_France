@@ -1,6 +1,6 @@
 from .base import Base
 from .db_models import BotUsersTable
-from .db_tools import create_table, insert_user_record, update_user_referrals, update_user_place
+from .db_tools import create_table, insert_user_record, update_user_referrals, get_user
 
 __all__ = [
     "Base",
@@ -8,5 +8,5 @@ __all__ = [
     "create_table",
     "insert_user_record",
     "update_user_referrals",
-    "update_user_place"
+    "get_user"
 ]

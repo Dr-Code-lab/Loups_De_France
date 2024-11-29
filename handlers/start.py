@@ -19,7 +19,7 @@ async def to_command_start(message: Message):
     referral_id = command_args[1] if len(command_args) > 1 else None
     print("?????", type(referral_id), referral_id)
     logger.info(type(message.chat.id), str(message))
-    user_data = dict(id=message.chat.id, name=message.chat.username, date=message.date, referral_id=referral_id)
+    user_data = dict(chat_id=message.chat.id, name=message.chat.username, date=message.date, referral_id=referral_id)
     await insert_user_record(user_data)
     if referral_id:
         await update_user_referrals(referral_id=referral_id, new_referral_id=str(message.chat.id))
