@@ -12,7 +12,10 @@ game = Game()
 
 @dp.callback_query(F.data == "donat")
 async def put_donat(call: CallbackQuery):
-	await call.message.answer(f"Переведите ваш донат на карту №:\n\n1234567890")
+	await call.message.answer(
+		f"""Переведите ваш донат на карту №:\n\n
+		Nom : VSEVOLOD AFANASJEV IBAN: DE41100110012628258599 BIC: NTSBDEB1XXX"""
+	)
 
 
 @dp.callback_query(F.data == "ref_link")
