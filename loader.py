@@ -1,10 +1,10 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from aiogram import Bot, Dispatcher
 # import redis
 # from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.fsm.storage.memory import MemoryStorage
-import config
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
+import config
 
 engine = create_async_engine(url=config.db_url, echo=True)
 db_session = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
