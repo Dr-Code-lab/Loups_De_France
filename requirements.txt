@@ -26,3 +26,4 @@ SQLAlchemy==2.0.30
 tomli==2.0.1
 typing_extensions==4.11.0
 yarl==1.9.4
+watchdog~=6.0.0
