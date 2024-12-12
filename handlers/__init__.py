@@ -1,6 +1,6 @@
 from .admin_callback import admin_dp
 from .admin_start import admin_dp
-# from .calc_echo import dp
+from .calc_echo import dp
 from .callback import dp
 from .clean import dp
 from .game import dp

@@ -1,4 +1,4 @@
-from sqlalchemy.future import select
+from sqlalchemy import desc, select
 
 from db import Base, BotUsersTable
 from loader import db_session, engine
@@ -50,11 +50,16 @@ async def update_user_referrals(referral_id: str, new_referral_id: str):
 
 async def get_user(user_id: str):
 	async with db_session() as session:
-		stmt = select(BotUsersTable).where(BotUsersTable.chat_id == int(user_id))
+		stmt = (
+			select(BotUsersTable)
+			.where(BotUsersTable.chat_id == int(user_id))
+			.order_by(desc(BotUsersTable.date))
+		)
 		result = await session.execute(stmt)
 		user = result.scalars().first()
+
 		if user is None:
 			print(f"User with ID {user_id} not found.")
 		else:
-			print(f"User with ID {user.id} !!!")
+			print(f"User with ID {user.id}: {user}")
 		return user

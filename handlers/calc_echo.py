@@ -1,11 +1,13 @@
-# from aiogram.types import Message
-# from num2words import num2words
-#
+from aiogram.types import Message
+
 # from db import insert_user_record
-# from loader import dp
+from loader import dp
+
+
+# from num2words import num2words
 # from .callback import game
-#
-#
+
+
 # def get_money_text(money_num: float):
 # 	calc_operation = '+' if game.type == 'plus' else '-'
 # 	result_string = f"Расчетная сумма {calc_operation} налог {int(100 - game.size * 100)}%:\n\n{money_num}\n"
@@ -24,8 +26,9 @@
 # 	return result_string
 #
 #
-# @dp.message()
-# async def calc_handler(message: Message) -> None:
+@dp.message()
+async def calc_handler(message: Message) -> None:
+    await message.answer("Excusez-moi, je ne vous comprends pas, on ne m'a pas appris cela")
 # 	msg = ''.join(message.md_text.split('\\'))
 # 	msg = msg.replace(",", ".")
 # 	result = None

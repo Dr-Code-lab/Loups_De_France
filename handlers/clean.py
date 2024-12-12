@@ -9,4 +9,5 @@ from .callback import game
 async def to_command_clean(message: Message):
 	game.is_game = False
 	game.busy_places = []
+	game. current_players = []
 	await message.answer(f"Игра обнулилась.")

@@ -29,14 +29,13 @@ async def get_referral_link(call: CallbackQuery):
 async def select_place(call: CallbackQuery):
 	if game.is_game and call.message.chat.id not in game.current_players:
 		print(call.message)
-		range_places = [n for n in range(1, 11) if n not in game.busy_places]  # чекнуть места тут
-		if not range_places:
+		if not game.free_places:
 			await call.message.answer(f"Упс! кажется вам не осталось места, попробуйте снова позднее")
-		place = random.choice(range_places)
+		place = random.choice(game.free_places)
 		if place:
 			user = await get_user(user_id=str(call.message.chat.id))
 			print("@@@@", user)
-			if user.balance > 4:
+			if user.balance >= 5:
 				user.balance -= 5
 				user_data = dict(
 					chat_id=call.message.chat.id,
@@ -51,9 +50,13 @@ async def select_place(call: CallbackQuery):
 					)
 				await insert_user_record(user_data)
 				print(f"Place for {call.message.chat.id}: {place}")
+				game.free_places.remove(place)
 				game.busy_places.append(place)
 				game.current_players.append(call.message.chat.id)
-				await call.message.answer(f"Бинго! Ваше место за столом:\n\n{place}")
+				await call.message.answer(
+					f"""Бинго! Ваше место за столом:\n\n{place}\n\n
+					в игре уже {len(game.current_players)} игроков"""
+				)
 			else:
 				print(f"Balance for {call.message.chat.id}: {user.balance} not enough")
 				await call.message.answer(f"Упс! Пополните баланс и попробуйте снова")
