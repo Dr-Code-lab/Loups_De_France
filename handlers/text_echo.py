@@ -27,12 +27,13 @@ from loader import dp
 #
 #
 @dp.message()
-async def calc_handler(message: Message) -> None:
+async def text_handler(message: Message) -> None:
     await message.answer("Excusez-moi, je ne vous comprends pas, on ne m'a pas appris cela")
 # 	msg = ''.join(message.md_text.split('\\'))
 # 	msg = msg.replace(",", ".")
 # 	result = None
 # 	try:
+
 # 		msg_clean = float(msg)
 # 		try:
 # 			if game.type == 'plus':
