@@ -4,6 +4,7 @@ import time
 
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
+from log import logger
 
 
 class RestartHandler(FileSystemEventHandler):
@@ -19,7 +20,7 @@ class RestartHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if event.src_path.endswith('.py'):
-            print(f'File modified: {event.src_path}')
+            logger.info(f'File modified: {event.src_path}')
             self.start_process()
 
 

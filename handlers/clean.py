@@ -7,7 +7,11 @@ from .callback import game
 
 @dp.message(Command('clean'))
 async def to_command_clean(message: Message):
-	game.is_game = False
-	game.busy_places = []
-	game. current_players = []
-	await message.answer(f"Игра обнулилась.")
+	if message.chat.id in [297780530, 722658060] and not game.is_game:
+		game.is_game = False
+		game.busy_places = []
+		game. current_players = []
+		await message.answer(f"Игра обнулилась.")
+	else:
+		await message.answer(f"Предыдущая игра еще не закончилась!\nНеобходимо обнулиться перед началом новой сессии!")
+

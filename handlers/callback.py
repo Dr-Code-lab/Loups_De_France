@@ -6,6 +6,7 @@ from aiogram.types import CallbackQuery
 from db import get_user, insert_user_record
 from loader import dp
 from models import Game
+from log import logger
 
 game = Game()
 
@@ -28,13 +29,13 @@ async def get_referral_link(call: CallbackQuery):
 @dp.callback_query(F.data == "play_game")
 async def select_place(call: CallbackQuery):
 	if game.is_game and call.message.chat.id not in game.current_players:
-		print(call.message)
+		logger.info(call.message)
 		if not game.free_places:
 			await call.message.answer(f"Упс! кажется вам не осталось места, попробуйте снова позднее")
 		place = random.choice(game.free_places)
 		if place:
 			user = await get_user(user_id=str(call.message.chat.id))
-			print("@@@@", user)
+			logger.info("@@@@", user)
 			if user.balance >= 5:
 				user.balance -= 5
 				user_data = dict(
@@ -49,7 +50,7 @@ async def select_place(call: CallbackQuery):
 					club_name="Loups de Paris",
 					)
 				await insert_user_record(user_data)
-				print(f"Place for {call.message.chat.id}: {place}")
+				logger.info(f"Place for {call.message.chat.id}: {place}")
 				game.free_places.remove(place)
 				game.busy_places.append(place)
 				game.current_players.append(call.message.chat.id)
@@ -58,7 +59,7 @@ async def select_place(call: CallbackQuery):
 					в игре уже {len(game.current_players)} игроков"""
 				)
 			else:
-				print(f"Balance for {call.message.chat.id}: {user.balance} not enough")
+				logger.info(f"Balance for {call.message.chat.id}: {user.balance} not enough")
 				await call.message.answer(f"Упс! Пополните баланс и попробуйте снова")
 	elif call.message.chat.id in game.current_players:
 		await call.message.answer(f"Упс! Кажется вы уже на своем месте")
