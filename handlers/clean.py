@@ -13,5 +13,5 @@ async def to_command_clean(message: Message):
 		game. current_players = []
 		await message.answer(f"Игра обнулилась.")
 	else:
-		await message.answer(f"Предыдущая игра еще не закончилась!\nНеобходимо обнулиться перед началом новой сессии!")
+		await message.answer(f"Действиие доступно только администратору игры")
 
