@@ -31,7 +31,7 @@ async def get_referral_link(call: CallbackQuery):
 	user = await get_user(user_id=str(call.message.chat.id))
 	logger.info(f"@@balance for user@@ {user} = {user.balance}")
 	await call.message.answer(
-		f"Ваш баланс:\n\n{user.balance}\n"
+		f"Ваш баланс:\n\n{user.balance} 💶\n"
 	)
 
 
