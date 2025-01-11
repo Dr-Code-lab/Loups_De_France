@@ -26,6 +26,15 @@ async def get_referral_link(call: CallbackQuery):
 		)
 
 
+@dp.callback_query(F.data == "balance")
+async def get_referral_link(call: CallbackQuery):
+	user = await get_user(user_id=str(call.message.chat.id))
+	logger.info(f"@@balance for user@@ {user} = {user.balance}")
+	await call.message.answer(
+		f"Ваш баланс:\n\n{user.balance}\n"
+	)
+
+
 @dp.callback_query(F.data == "play_game")
 async def select_place(call: CallbackQuery):
 	if game.is_game and call.message.chat.id not in game.current_players:

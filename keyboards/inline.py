@@ -13,6 +13,10 @@ keyboard = InlineKeyboardMarkup(
 			text="Пригласить друга",
 			callback_data='ref_link'
 			),
+		InlineKeyboardButton(
+			text="Узнать баланс",
+			callback_data='balance'
+		),
 	]]
 )
 
