@@ -2,9 +2,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 keyboard = InlineKeyboardMarkup(
-	inline_keyboard=[[
-		# InlineKeyboardButton(text="Войти в игру",
-		#                      callback_data='play_game'),
+	inline_keyboard=[
+		[
 		InlineKeyboardButton(
 			text="Передать донат",
 			callback_data='donat'
@@ -12,7 +11,8 @@ keyboard = InlineKeyboardMarkup(
 		InlineKeyboardButton(
 			text="Пригласить друга",
 			callback_data='ref_link'
-			),
+			)],
+		[
 		InlineKeyboardButton(
 			text="Узнать баланс",
 			callback_data='balance'
