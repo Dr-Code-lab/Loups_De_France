@@ -5,7 +5,7 @@ keyboard = InlineKeyboardMarkup(
 	inline_keyboard=[
 		[
 		InlineKeyboardButton(
-			text="Передать донат",
+			text="Пополнить баланс",
 			callback_data='donat'
 			),
 		InlineKeyboardButton(
