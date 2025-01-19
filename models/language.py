@@ -1,3 +1,3 @@
 class Language:
-	is_france: bool = False
+	is_france2: bool = False
 
