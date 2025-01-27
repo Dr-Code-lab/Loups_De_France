@@ -13,7 +13,7 @@ async def create_table():
 			table_name='ldf_players',
 			schema='public'
 			)
-		logger.info("end ENGINE: ", existing_tables)
+		logger.info(f"end ENGINE: {existing_tables}")
 		if not existing_tables:
 			logger.info("start CREATION")
 			await connect_db.run_sync(Base.metadata.create_all)
