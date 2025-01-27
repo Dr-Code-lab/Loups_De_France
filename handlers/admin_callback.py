@@ -16,7 +16,7 @@ async def select_fee_(call: CallbackQuery):
 	promocode = f"""MashaGPT-{str(uuid.uuid1())}"""
 	logger.info(promocode)
 	subscribe = await bot_admin(GetChatMember(chat_id=bot_slave_id, user_id=call.from_user.id))
-	logger.info("START!", subscribe.status, ChatMemberStatus.MEMBER)
+	logger.info("START!  {subscribe.status}  {ChatMemberStatus.MEMBER}")
 	if subscribe.status == ChatMemberStatus.MEMBER:
 		await call.message.answer(f"Ваш промокод: {promocode}")
 	else:
